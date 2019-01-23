@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 import DayCard from './DayCard';
 
-class DaysList extends React.Component {
+class DaysList extends Component {
   state = {
     isLoading: true,
     hasError: false,
@@ -29,6 +29,7 @@ class DaysList extends React.Component {
 
   render() {
     const { hasError, isLoading } = this.state;
+    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
     if (isLoading) {
       return (
@@ -44,7 +45,18 @@ class DaysList extends React.Component {
 
     return (
       <div className="DayList">
-        <DayCard></DayCard>
+        {
+          this.state.data.daily.data.map(day => (
+            <DayCard
+              key = {day.time}
+              day = {daysOfWeek[(new Date(day.time * 1000)).getDay()]}
+              icon = {day.icon}
+              weather = {day.summary}
+              temperatureHigh = {day.temperatureHigh}
+              temperatureLow = {day.temperatureLow}
+            />
+          ))
+        }
       </div>
     )
   }

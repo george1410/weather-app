@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Header from './Header';
 import DayList from './DayList'
 
-class Page extends React.Component {
+class Page extends Component {
     render() {
         return (
             <>
