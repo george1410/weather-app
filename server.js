@@ -8,6 +8,6 @@ app.listen(port, () => {
 });
 
 // get route
-app.get('/weather-backend', (req, res) => {
+app.get('/api/daily', (req, res) => {
     res.send({express: 'YOU ARE CONNECTED TO EXPRESS'});
 })

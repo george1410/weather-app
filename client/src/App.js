@@ -3,23 +3,32 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  state = {
+    data: null
+  };
+
+  componentDidMount() {
+    // Call our fetch function below once the component mounts
+    /*
+    this.callBackendAPI()
+      .then(res => this.setState({ data: res.express }))
+      .catch(err => console.log(err));
+    */
+
+    fetch('/api/daily')
+      .then(response => response.json())
+      .then(json => this.setState({ data: json.express }))
+      .catch(err => console.log(err))
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <h1 className="App-title">Welcome to React</h1>
         </header>
+        <p className="App-intro">{this.state.data}</p>
       </div>
     );
   }
