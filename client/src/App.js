@@ -17,7 +17,7 @@ class App extends Component {
 
     fetch('/api/daily')
       .then(response => response.json())
-      .then(json => this.setState({ data: json.express }))
+      .then(json => this.setState({ data: json }))
       .catch(err => console.log(err))
   }
 
@@ -28,7 +28,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">{this.state.data}</p>
+        <p className="App-intro">{JSON.stringify(this.state.data)}</p>
       </div>
     );
   }
