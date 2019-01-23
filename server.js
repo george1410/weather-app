@@ -17,7 +17,8 @@ app.get('/api/daily', (req, res) => {
   fetch(url)
     .then (response => response.json())
     .then (data => {
-      res.json(JSON.stringify(data));
+      data.daily.data = data.daily.data.slice(0,7);
+      res.json(data);
     })
     .catch ((e) => {
       console.log(e);
