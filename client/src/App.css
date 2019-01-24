@@ -1,13 +1,10 @@
-.App {
-  padding: 3rem;
-}
-
 .DayCard {
   padding: 0.5rem;
   margin:0.5rem;
   border: 1px solid #ECEFF1;
   border-radius: 3px;
   display: inline-block;
+  width: 80px;
 }
 
 .DaysList {

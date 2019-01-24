@@ -8,19 +8,30 @@ class DayCard extends Component {
                 <div>{this.props.day}</div>
                 <div>
                     <img
-                        src={this.getIcon(this.props.icon)}
+                        src={this.getIcon()}
                         alt={this.props.weather}
                         title={this.props.weather}
                     />
                 </div>
-                <div>H: {Math.round(this.props.temperatureHigh)}°C</div>
-                <div>L: {Math.round(this.props.temperatureLow)}°C</div>
+                <div>H: {this.getTempFormatted(this.props.temperatureHigh)}</div>
+                <div>L: {this.getTempFormatted(this.props.temperatureLow)}</div>
             </div>
         )
     }
 
-    getIcon(name) {
-        switch (name) {
+    getTempFormatted(temperature) {
+        let temp = temperature;
+        if (this.props.showFarenheit) {
+            temp = Math.round((temp * (9/5)) + 32);
+            return temp + '°F';
+        } else {
+            temp = Math.round(temp);
+            return temp + '°C';
+        }
+    }
+
+    getIcon() {
+        switch (this.props.icon) {
             case 'clear-day':
                 return Icons.clearday;
             case 'clear-night':
