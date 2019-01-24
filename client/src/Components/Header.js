@@ -10,6 +10,7 @@ class Header extends Component {
         return (
             <header>
                 <h1>George's Weather App</h1>
+                {this.props.hasError ? '' : <h3>{this.props.formattedLocation}</h3>}
                 {this.props.isLoading ? <p>Loading...</p> : summary}
                 <hr />
             </header>

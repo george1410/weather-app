@@ -13,7 +13,7 @@ class LocationForm extends Component {
                                 autoComplete="off"
                                 type="text"
                                 id="locationInput"
-                                placeholder="Location"
+                                placeholder="Postcode/City"
                                 value={this.props.location}
                                 onChange={this.props.onLocationChange}/>
                         </div>
