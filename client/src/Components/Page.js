@@ -6,12 +6,13 @@ import Options from './Options';
 class Page extends Component {
     state = {
         showFarenheit: false,
-        latitude: '51.4462',
-        longitude: '-0.2169',
+        latitude: '',
+        longitude: '',
         location: '',
         isLoading: true,
         hasError: false,
-        data: {}
+        data: {},
+        isLocationSet: false
     }
 
     handleChangeCheckbox = () => {
@@ -23,6 +24,7 @@ class Page extends Component {
     handleLocationSubmit = (e) => {
         e.preventDefault();
         this.setState({
+            isLocationSet: true,
             isLoading: true,
             hasError: false
         });
@@ -33,12 +35,20 @@ class Page extends Component {
                 if(json.total_results > 0) {
                     let lat = json.results[0].geometry.lat;
                     let long = json.results[0].geometry.lng;
-                    this.setState({
-                        latitude: lat,
-                        longitude: long,
-                        formattedLocation: json.results[0].formatted,
-                        location: json.results[0].formatted
-                    })
+                    if (lat !== this.state.latitude || long !== this.state.longitude) {
+                        this.setState({
+                            latitude: lat,
+                            longitude: long,
+                            formattedLocation: json.results[0].formatted,
+                            location: json.results[0].formatted
+                        })
+                    } else {
+                        this.setState({
+                            isLoading: false,
+                            formattedLocation: json.results[0].formatted,
+                            location: json.results[0].formatted
+                        })
+                    }
                 } else {
                     this.setState({
                         hasError: true,
@@ -71,7 +81,8 @@ class Page extends Component {
                     isLoading={this.state.isLoading} 
                     hasError={this.state.hasError} 
                     location={this.state.location} 
-                    formattedLocation={this.state.formattedLocation} />
+                    formattedLocation={this.state.formattedLocation} 
+                    isLocationSet={this.state.isLocationSet} />
                 <Options
                     onChangeCheckbox={this.handleChangeCheckbox}
                     onLocationSubmit={this.handleLocationSubmit}
@@ -83,20 +94,17 @@ class Page extends Component {
                         longitude={this.state.longitude}
                         isLoading={this.state.isLoading}
                         hasError={this.state.hasError}
-                        data={this.state.data} />
+                        data={this.state.data} 
+                        isLocationSet={this.state.isLocationSet} />
                 </div>
             </>
         );
     }
 
-    componentDidMount() {
-        this.getDailyWeatherData();
-    }
-
     componentDidUpdate(prevProps, prevState) {
         if (this.state.latitude !== prevState.latitude || this.state.longitude !== prevState.longitude) {
             this.getDailyWeatherData();
-        } 
+        }
     }
 
     getDailyWeatherData() {

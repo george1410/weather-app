@@ -5,6 +5,11 @@ class Options extends Component {
     render() {
         return (
             <>
+                <LocationForm
+                    onLocationSubmit={this.props.onLocationSubmit}
+                    onLocationChange={this.props.onLocationChange}
+                    location={this.props.location} />
+
                 <div>
                     <label>
                         <input
@@ -14,11 +19,6 @@ class Options extends Component {
                         <span className="label-body">Display in Farenheit</span>
                     </label>
                 </div>
-
-                <LocationForm
-                    onLocationSubmit={this.props.onLocationSubmit}
-                    onLocationChange={this.props.onLocationChange}
-                    location={this.props.location} />
             </>
         );
     }

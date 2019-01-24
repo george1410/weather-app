@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import DayCard from './DayCard';
+const {DateTime} = require('luxon');
 
 class DaysList extends Component {
   render() {
-    const { hasError, isLoading } = this.props;
-    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const { hasError, isLoading, isLocationSet } = this.props;
+
+    if (!isLocationSet) {
+      return null;
+    }
 
     if (isLoading) {
       return (
@@ -24,7 +28,7 @@ class DaysList extends Component {
           this.props.data.daily.data.map(day => (
             <DayCard
               key = {day.time}
-              day = {daysOfWeek[(new Date(day.time * 1000)).getDay()]}
+              day = {DateTime.fromSeconds(day.time).setZone(this.props.data.timezone).weekdayShort}
               icon = {day.icon}
               weather = {day.summary}
               temperatureHigh = {day.temperatureHigh}

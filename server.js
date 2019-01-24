@@ -17,7 +17,6 @@ app.get('/api/weather/daily', (req, res) => {
   fetch(url)
     .then (response => response.json())
     .then (data => {
-      data.daily.data = data.daily.data.slice(0,7);
       res.json(data);
     })
     .catch ((e) => {

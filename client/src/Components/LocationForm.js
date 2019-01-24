@@ -20,7 +20,7 @@ class LocationForm extends Component {
 
                         <div className="three columns">
                             <label>&nbsp;</label>
-                            <input className="button-primary u-full-width" type="submit" value="Change Location"/>
+                            <input className="button-primary u-full-width" type="submit" value="Set Location"/>
                         </div>
                     </div>
                 </form>
