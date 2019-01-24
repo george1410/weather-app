@@ -3,15 +3,6 @@ import WeatherTable from './WeatherTable';
 import DayList from './DayList';
 
 class WeatherArea extends Component {
-    state = {
-        selectedDay: null
-    }
-
-    handleSelectedDayChange = (time) => {
-        this.setState({
-            selectedDay: time
-        })
-    }
 
     render() {
         return (
@@ -24,13 +15,14 @@ class WeatherArea extends Component {
                     hasError={this.props.hasError}
                     data={this.props.data} 
                     isLocationSet={this.props.isLocationSet} 
-                    selectedDay={this.state.selectedDay} 
-                    onSelectedDayChange={this.handleSelectedDayChange} />
+                    selectedDay={this.props.selectedDay} 
+                    onSelectedDayChange={this.props.onSelectedDayChange} />
                 <WeatherTable 
-                    selectedDay={this.state.selectedDay} 
+                    selectedDay={this.props.selectedDay} 
                     latitude={this.props.latitude}
                     longitude={this.props.longitude} 
-                    showFarenheit={this.props.showFarenheit} />
+                    showFarenheit={this.props.showFarenheit} 
+                    isLoading={this.props.isLoading} />
             </>
         )
     }

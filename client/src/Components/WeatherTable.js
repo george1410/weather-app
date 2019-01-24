@@ -9,7 +9,7 @@ class WeatherTable extends Component {
     }
 
     render() {
-        if (!this.state.hasData) {
+        if (!this.state.hasData || this.props.isLoading || this.props.selectedDay === null) {
             return null;
         }
 

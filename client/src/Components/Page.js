@@ -12,7 +12,14 @@ class Page extends Component {
         isLoading: true,
         hasError: false,
         data: {},
-        isLocationSet: false
+        isLocationSet: false,
+        selectedDay: null
+    }
+
+    handleSelectedDayChange = (time) => {
+        this.setState({
+            selectedDay: time
+        })
     }
 
     handleChangeCheckbox = () => {
@@ -24,6 +31,7 @@ class Page extends Component {
     handleLocationSubmit = (e) => {
         e.preventDefault();
         this.setState({
+            selectedDay: null,
             isLocationSet: true,
             isLoading: true,
             hasError: false
@@ -91,7 +99,9 @@ class Page extends Component {
                         isLoading={this.state.isLoading}
                         hasError={this.state.hasError}
                         data={this.state.data} 
-                        isLocationSet={this.state.isLocationSet} />
+                        isLocationSet={this.state.isLocationSet} 
+                        selectedDay = {this.state.selectedDay} 
+                        onSelectedDayChange={this.handleSelectedDayChange} />
                 </div>
             </>
         );
