@@ -11,9 +11,21 @@ app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
 
-// get route
+// get routes
 app.get('/api/weather/daily', (req, res) => {
   let url = `https://api.darksky.net/forecast/${weatherApiKey}/${req.query.lat},${req.query.long}?exclude=currently,minutely,hourly,alerts&units=uk2`;
+  fetch(url)
+    .then (response => response.json())
+    .then (data => {
+      res.json(data);
+    })
+    .catch ((e) => {
+      console.log(e);
+    })
+})
+
+app.get('/api/weather/hourly', (req, res) => {
+  let url = `https://api.darksky.net/forecast/${weatherApiKey}/${req.query.lat},${req.query.long},${req.query.time}?exclude=currently,minutely,daily,alerts&units=uk2`;
   fetch(url)
     .then (response => response.json())
     .then (data => {

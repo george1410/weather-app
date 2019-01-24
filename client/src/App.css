@@ -4,7 +4,7 @@
   border: 1px solid #ECEFF1;
   border-radius: 3px;
   display: inline-block;
-  width: 80px;
+  width: 10%;
 }
 
 .DaysList {
@@ -13,4 +13,38 @@
 
 .Content {
   text-align: center;
+}
+
+.centered {
+  float: none;
+  margin:0 auto;
+  margin-left:auto !important;
+}
+
+table {
+  border-spacing: 0;
+  width: 60%;
+}
+
+button.DayCard {
+  height: auto;
+}
+
+.weatherIcon {
+  width: 75%;
+}
+
+.weatherIconTable {
+  height: 25%;
+  line-height: 100%;
+  vertical-align: middle;
+}
+
+.details {
+  column-count: 2;
+  width: 100%;
+}
+
+.selected-day {
+  border-color: #888;
 }

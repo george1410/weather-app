@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import DayList from './DayList';
 import Options from './Options';
+import WeatherArea from './WeatherArea';
 
 class Page extends Component {
     state = {
@@ -75,12 +75,7 @@ class Page extends Component {
         return (
             <>
                 <Header
-                    latitude={this.state.latitude}
-                    longitude={this.state.longitude}
-                    data={this.state.data}
-                    isLoading={this.state.isLoading} 
                     hasError={this.state.hasError} 
-                    location={this.state.location} 
                     formattedLocation={this.state.formattedLocation} 
                     isLocationSet={this.state.isLocationSet} />
                 <Options
@@ -89,7 +84,8 @@ class Page extends Component {
                     onLocationChange={this.handleLocationChange}
                     location={this.state.location} />
                 <div className="Content">
-                    <DayList showFarenheit={this.state.showFarenheit}
+                    <WeatherArea 
+                        showFarenheit={this.state.showFarenheit}
                         latitude={this.state.latitude}
                         longitude={this.state.longitude}
                         isLoading={this.state.isLoading}
